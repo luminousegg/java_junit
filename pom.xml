@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.yiibai</groupId>
+  <artifactId>TestHelloWorld</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>TestHelloWorld</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <spring.framework.version>4.2.5.RELEASE</spring.framework.version>
+    <slf4j.version>1.7.2</slf4j.version>
+    <testnames>dc_default</testnames>
+    <listeners>com.sankuai.meituan.qcs.dacheqaplatform.dctools.DcCaseRunReportListener</listeners>
+  </properties>
+
+
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.sankuai</groupId>
+        <artifactId>inf-bom</artifactId>
+        <version>1.2.13</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+
+  </dependencyManagement>
+
+
+
+  <dependencies>
+
+
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.10</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.meituan.mtrace</groupId>
+      <artifactId>mtrace</artifactId>
+      <version>1.1.5-SNAPSHOT</version>
+    </dependency>
+
+    <!-- zebra-->
+    <dependency>
+      <groupId>com.dianping.zebra</groupId>
+      <artifactId>zebra-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.dianping.zebra</groupId>
+      <artifactId>zebra-ds-monitor-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.dianping.zebra</groupId>
+      <artifactId>zebra-dao</artifactId>
+      <version>0.2.4</version>
+    </dependency>
+
+    <!-- DB -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.38</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.framework.version}</version>
+    </dependency>
+
+    <!--c3p0 -->
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.5.2</version>
+    </dependency>
+
+    <!-- mybatis -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+
+    <!-- tair -->
+    <dependency>
+      <groupId>com.taobao.tair</groupId>
+      <artifactId>tair3-client</artifactId>
+      <version>3.10.4</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>slf4j-api</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+
+    <!-- hbase -->
+    <dependency>
+      <groupId>com.meituan.service.hbase</groupId>
+      <artifactId>mthbase-client</artifactId>
+      <version>1.1.5</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>slf4j-log4j12</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>slf4j-api</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>guava</artifactId>
+          <groupId>com.google.guava</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>paranamer</artifactId>
+          <groupId>com.thoughtworks.paranamer</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-beanutils</artifactId>
+          <groupId>commons-beanutils</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-codec</artifactId>
+          <groupId>commons-codec</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-collections</artifactId>
+          <groupId>commons-collections</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-lang</artifactId>
+          <groupId>commons-lang</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>junit</artifactId>
+          <groupId>junit</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>httpclient</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jackson-core-asl</artifactId>
+          <groupId>org.codehaus.jackson</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jackson-mapper-asl</artifactId>
+          <groupId>org.codehaus.jackson</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>snappy-java</artifactId>
+          <groupId>org.xerial.snappy</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>zookeeper</artifactId>
+          <groupId>org.apache.zookeeper</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>gson</artifactId>
+          <groupId>com.google.code.gson</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+
+    <!--mafka-->
+    <dependency>
+      <groupId>com.meituan.mafka</groupId>
+      <artifactId>mafka-client_2.10</artifactId>
+      <version>2.2.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sankuai.wm</groupId>
+      <artifactId>retail.mq.mafka</artifactId>
+      <version>1.1.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.c.scenes.open-client</artifactId>
+      <version>1.0.1-SNAPSHOT</version>
+    </dependency>
+
+    <!-- dache promotionMappers client -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.promotion</artifactId>
+      <version>1.3.3</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.meituan.service.mobile.message</groupId>
+      <artifactId>voucher-third</artifactId>
+      <version>1.0.1</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>apache-log4j-extras</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.growth</artifactId>
+      <version>1.0.5-SNAPSHOT</version>
+    </dependency>
+
+    <!--user-->
+    <dependency>
+      <groupId>com.meituan.service.user</groupId>
+      <artifactId>account-api</artifactId>
+      <version>0.0.4-SNAPSHOT</version>
+    </dependency>
+
+    <!-- 收银中心 -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>cashier-client</artifactId>
+      <version>1.1.7</version>
+    </dependency>
+    <!--&lt;!&ndash; 发票服务 &ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>com.sankuai.qcs</groupId>-->
+    <!--<artifactId>qcs.client.invocie</artifactId>-->
+    <!--<version>1.1.1</version>-->
+    <!--</dependency>-->
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.rental</artifactId>
+      <version>13.7.0-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.rental.client</artifactId>
+      <version>12.2.6-SNAPSHOT</version>
+    </dependency>
+
+
+    <!-- 美团地图 -->
+    <dependency>
+      <artifactId>mt-map-client</artifactId>
+      <groupId>com.sankuai.qcs.gps</groupId>
+      <version>1.2.2</version>
+    </dependency>
+    <!--云图统计配置项-->
+    <dependency>
+      <groupId>com.sankuai.meituan.qcs</groupId>
+      <artifactId>dache-qa-platform</artifactId>
+      <version>0.0.2-SNAPSHOT</version>
+    </dependency>
+    <!-- LBS轨迹服务 -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.lbstrail</artifactId>
+      <version>1.2.1-SNAPSHOT</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.common</artifactId>
+      <version>1.2.55-SNAPSHOT</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- Data Behavior -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.databehavior</artifactId>
+      <version>1.3.28-SNAPSHOT</version>
+    </dependency>
+
+    <!-- LBS Behavior -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.lbsbehavior</artifactId>
+      <version>1.3.1-SNAPSHOT</version>
+    </dependency>
+
+
+    <!-- LBS Uflow -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.lbsuflow</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+
+
+    <!-- LBS POI关键点、周边检索和地图导航服务 -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.lbs</artifactId>
+      <version>1.1.44-SNAPSHOT</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- LBS地理围栏服务接口 -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.geofencing</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+
+    <!-- 订单调度服务接口 -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.dispatch</artifactId>
+      <version>2.0.4-SNAPSHOT</version>
+    </dependency>
+
+    <!-- 订单调度回放服务接口 -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.dispatchview</artifactId>
+      <version>1.1.8</version>
+    </dependency>
+
+    <!-- 订单服务接口 -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.order</artifactId>
+      <version>test-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>order-common</artifactId>
+      <version>1.0.3.1-SNAPSHOT</version>
+    </dependency>
+
+    <!--订单查询服务 -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>order-client</artifactId>
+      <version>1.0.3.2-SNAPSHOT</version>
+    </dependency>
+
+    <!--订单操作历史 -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>orderoperation-client</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
+
+    <!-- 骑手状态服务接口 -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.rs</artifactId>
+      <version>1.1.24-SNAPSHOT</version>
+    </dependency>
+
+    <!--driverstatus -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.dispatchstatus</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+
+    <!--排队服务-->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.dispatch.queue</artifactId>
+      <version>1.0.10</version>
+    </dependency>
+
+
+    <!-- 骑手中心服务接口 -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.rc</artifactId>
+      <version>1.3.7.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.complicance</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs-service-complicance-client</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>dache.testdata.assist</artifactId>
+      <version>1.0-SNAPSHOT</version>
+
+    </dependency>
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.toordercenter</artifactId>
+      <version>1.0.3-SNAPSHOT</version>
+    </dependency>
+
+    <!-- Push -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.push</artifactId>
+      <version>1.2.7</version>
+    </dependency>
+
+    <!-- 司机绩效activity.server-->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.activity.common</artifactId>
+      <version>0.0.2-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.activity</artifactId>
+      <version>1.0.2-SNAPSHOT</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.orderview</artifactId>
+      <version>1.0.6-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.complicance</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
+    <!-- 六边形区域-->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.lbs.geohex</artifactId>
+      <version>1.0.2</version>
+    </dependency>
+
+    <!--price client-->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.price</artifactId>
+      <version>1.5.9-SNAPSHOT</version>
+    </dependency>
+
+
+    <!-- adanosweb client -->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>adanosweb.client</artifactId>
+      <version>1.2.6-SNAPSHOT</version>
+    </dependency>
+    <!-- 订单取消费更新-->
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>order-client</artifactId>
+      <version>test-SNAPSHOT</version>
+
+
+
+    </dependency>
+    <!--支付回调thrift接口回调-->
+    <dependency>
+      <groupId>com.sankuai.pay.trade</groupId>
+      <artifactId>notifySdk</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs-service-complicance-client</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>r.settle.common</artifactId>
+      <version>1.2.14-SNAPSHOT</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.meituan.pay</groupId>
+          <artifactId>mwalletProxySdk</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.meituan.log</groupId>
+          <artifactId>scribe-log4j2</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-slf4j-impl</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.meituan.inf</groupId>
+          <artifactId>xmd-log4j2</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>com.meituan.pay</groupId>
+      <artifactId>mwalletProxySdk</artifactId>
+      <version>1.2.31</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sankuai.qcs</groupId>
+      <artifactId>qcs.client.settle</artifactId>
+      <version>1.2.15</version>
+    </dependency>
+  </dependencies>
+  <!--end qcs settle http to thrift-->
+
+  <distributionManagement>
+    <repository>
+      <id>meituan-nexus-releases</id>
+      <name>Meituan Nexus Repository</name>
+      <url>http://pixel.sankuai.com/repository/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>meituan-nexus-snapshots</id>
+      <name>Meituan Nexus Repository</name>
+      <url>http://pixel.sankuai.com/repository/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <resources>
+          <resource>
+            <directory>src/main/data/offline</directory>
+          </resource>
+          <resource>
+            <directory>src/main/resources-dev</directory>
+          </resource>
+          <resource>
+            <directory>src/main/resources</directory>
+          </resource>
+        </resources>
+        <testResources>
+          <testResource>
+            <directory>src/test/profile/dev</directory>
+          </testResource>
+
+        </testResources>
+      </build>
+    </profile>
+    <profile>
+      <id>test</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+
+        <resources>
+          <resource>
+            <directory>src/main/data/offline</directory>
+          </resource>
+          <resource>
+            <directory>src/main/resources-test</directory>
+          </resource>
+          <resource>
+            <directory>src/main/resources</directory>
+          </resource>
+        </resources>
+        <testResources>
+          <testResource>
+            <directory>src/test/profile/test</directory>
+          </testResource>
+        </testResources>
+      </build>
+    </profile>
+    <profile>
+      <id>beta</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <resources>
+          <resource>
+            <directory>src/main/data/offline</directory>
+          </resource>
+          <resource>
+            <directory>src/main/resources-beta</directory>
+          </resource>
+          <resource>
+            <directory>src/main/resources</directory>
+          </resource>
+        </resources>
+        <testResources>
+          <testResource>
+            <directory>src/test/profile/beta</directory>
+          </testResource>
+          <testResource>
+            <directory>src/test/data/offline</directory>
+          </testResource>
+
+        </testResources>
+      </build>
+    </profile>
+    <profile>
+      <id>prod</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <resources>
+          <resource>
+            <directory>src/main/resources-prod</directory>
+          </resource>
+          <resource>
+            <directory>src/main/resources</directory>
+          </resource>
+          <resource>
+            <directory>src/main/data/offline</directory>
+          </resource>
+        </resources>
+        <testResources>
+          <testResource>
+            <directory>src/test/profile/prod</directory>
+          </testResource>
+
+        </testResources>
+      </build>
+    </profile>
+  </profiles>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.7.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19.1</version>
+        <configuration>
+          <forkCount>5</forkCount>
+          <reuseForks>true</reuseForks>
+          <forkMode>once</forkMode>
+          <argLine>-Xmx1024m -XX:MaxPermSize=256m -Dfile.encoding=UTF-8</argLine>
+          <suiteXmlFiles>
+            <suiteXmlFile>${project.build.testOutputDirectory}/testng-suite.xml</suiteXmlFile>
+          </suiteXmlFiles>
+          <testFailureIgnore>true</testFailureIgnore>
+          <reportsDirectory>${basedir}/reports/surefire-reports</reportsDirectory>
+          <systemPropertyVariables>
+            <taskId>""</taskId>
+            <triggerType>""</triggerType>
+            <triggerJob>""</triggerJob>
+            <envType>""</envType>
+            <jobName>""</jobName>
+            <buildNum>""</buildNum>
+          </systemPropertyVariables>
+          <!--<groups>${groups}</groups>-->
+          <threadCount>30</threadCount>
+          <parallel>methods</parallel>
+          <properties>
+            <property>
+              <name>testnames</name>
+              <value>${testnames}</value>
+            </property>
+            <property>
+              <name>listener</name>
+              <value>${listeners}</value>
+            </property>
+            <!--<property>-->
+            <!--<name>suitethreadpoolsize</name>-->
+            <!--<value>20</value>-->
+            <!--</property>-->
+            <!--<property>-->
+            <!--<name>parallel</name>-->
+            <!--<value>classes</value>-->
+            <!--</property>-->
+          </properties>
+
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <id>1</id>
+            <phase>test</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <delete dir="${basedir}/reports/itest-reports"/>
+                <move todir="${basedir}/reports/itest-reports">
+                  <fileset dir="${basedir}">
+                    <include name="*.txt"/>
+                  </fileset>
+                </move>
+              </target>
+            </configuration>
+          </execution>
+          <execution>
+            <id>2</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <delete dir="${basedir}/reports/testng-reports"/>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
